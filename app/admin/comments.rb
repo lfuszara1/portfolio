@@ -8,7 +8,9 @@ ActiveAdmin.register Comment do
   permit_params :avatar, :name, :description, :stars, :priority, :accepted?
 
   index do
-    column :avatar
+    column :avatar do |e|
+      e.avatar.blob
+    end
     column :name
     column :description
     column :stars
@@ -22,7 +24,7 @@ ActiveAdmin.register Comment do
     f.inputs "Details" do
       f.input :avatar, as: :file
       f.input :name
-      f.input :description
+      f.input :description, as: :quill_editor
       f.input :stars
       f.input :priority
       f.input :accepted?

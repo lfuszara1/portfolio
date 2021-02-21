@@ -9,6 +9,6 @@ class Technology < ApplicationRecord
   validates_presence_of :level
   validates_numericality_of :level
 
-  scope :order_by_level, -> { order(level: :asc) }
+  scope :order_by_level, -> { order(level: :desc) }
 
 end

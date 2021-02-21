@@ -18,8 +18,8 @@ import Comments from "./Comments";
 import Footer from "./Footer"
 
 const styles = {
-    sectionsMarginLeft: {
-        marginLeft: '260px',
+    contentWrapper: {
+        marginLeft: '256px',
     }
 }
 
@@ -57,20 +57,20 @@ class Home extends React.Component {
 
                     <Sidebar sliderRef={this.sliderRef} aboutRef={this.aboutRef} technologiesRef={this.technologiesRef} projectsRef={this.projectsRef} commentsRef={this.commentsRef} sectionId={this.state.sectionId} />
 
-                    <div className={classes.sectionsMarginLeft}>
-                        <InView as="div" onChange={(inView, entry) => inView ? this.handleIntersection(1) : null}>
+                    <div className={classes.contentWrapper}>
+                        <InView as="div" rootMargin="-68px" onChange={(inView, entry) => inView ? this.handleIntersection(1) : null}>
                             <Slider sliderRef={this.sliderRef}/>
                         </InView>
-                        <InView as="div" onChange={(inView, entry) => inView ? this.handleIntersection(2) : null}>
+                        <InView as="div" rootMargin="-4px" onChange={(inView, entry) => inView ? this.handleIntersection(2) : null}>
                             <About aboutRef={this.aboutRef} about={this.props.about}/>
                         </InView>
-                        <InView as="div" onChange={(inView, entry) => inView ? this.handleIntersection(3) : null}>
+                        <InView as="div" rootMargin="-4px" onChange={(inView, entry) => inView ? this.handleIntersection(3) : null}>
                             <Technologies technologiesRef={this.technologiesRef} technologies={this.props.technologies}/>
                         </InView>
-                        <InView as="div" onChange={(inView, entry) => inView ? this.handleIntersection(4) : null}>
+                        <InView as="div" rootMargin="-4px" onChange={(inView, entry) => inView ? this.handleIntersection(4) : null}>
                             <Projects projectsRef={this.projectsRef} projects={this.props.projects}/>
                         </InView>
-                        <InView as="div" onChange={(inView, entry) => inView ? this.handleIntersection(5) : null}>
+                        <InView as="div" rootMargin="-4px" onChange={(inView, entry) => inView ? this.handleIntersection(5) : null}>
                             <Comments commentsRef={this.commentsRef} comments={this.props.comments}/>
                         </InView>
                     </div>

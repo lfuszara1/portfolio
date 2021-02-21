@@ -13,20 +13,22 @@ const styles = {
         background: `url(${img_slider_1}) no-repeat`,
         backgroundSize: 'cover',
         filter: 'brightness(125%)',
-        maxWidth: '100vw',
+        maxWidth: '95vw',
         minHeight: '100vh',
         height: 'auto',
         width: 'auto',
-}
+    }
 }
 
 class Slider extends React.Component {
     render () {
+        const { classes } = this.props;
+
         return (
             <React.Fragment>
                 <div ref={this.props.sliderRef} id="section-slider">
                     <Box height='105vh'>
-                        <Box style={styles.slideOneContainer}>
+                        <Box className={classes.slideOneContainer}>
 
                         </Box>
                     </Box>

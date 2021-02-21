@@ -5,23 +5,33 @@ ActiveAdmin.register About do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :avatar, :name, :description
+  permit_params :name, :description, :avatar, :avatar
 
   index do
-    column :avatar
+    column :avatar do |e|
+      e.avatar.blob
+    end
     column :name
     column :description
 
     actions
   end
 
-  form html: { enctype: "multipart/form-data" } do |f|
+  form multiple: true do |f|
     f.inputs "Details" do
       f.input :avatar, as: :file
       f.input :name
-      f.input :description
+      f.input :description, as: :quill_editor
     end
     f.actions
   end
-  
+
+  after_create do |about|
+    about.avatar.attach(params[:avatar])
+  end
+
+  after_update do |about|
+    about.avatar.attach(params[:avatar])
+  end
+
 end

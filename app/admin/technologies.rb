@@ -8,7 +8,9 @@ ActiveAdmin.register Technology do
   permit_params :logo, :name, :description, :level
 
   index do
-    column :logo
+    column :logo do |e|
+      e.logo.blob
+    end
     column :name
     column :description
     column :level
@@ -20,7 +22,7 @@ ActiveAdmin.register Technology do
     f.inputs "Details" do
       f.input :logo, as: :file
       f.input :name
-      f.input :description
+      f.input :description, as: :quill_editor
       f.input :level
     end
     f.actions

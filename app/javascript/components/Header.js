@@ -19,7 +19,7 @@ class Header extends React.Component {
         const { classes } = this.props;
         return (
             <React.Fragment>
-                <AppBar position="static">
+                <AppBar>
                     <Toolbar>
                         <Typography variant="h6" color="textPrimary">
                             Portfolio

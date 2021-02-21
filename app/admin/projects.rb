@@ -8,7 +8,9 @@ ActiveAdmin.register Project do
   permit_params :logo, :name, :description
 
   index do
-    column :logo
+    column :logo do |e|
+      e.logo.blob
+    end
     column :name
     column :description
 
@@ -19,7 +21,7 @@ ActiveAdmin.register Project do
     f.inputs "Details" do
       f.input :logo, as: :file
       f.input :name
-      f.input :description
+      f.input :description, as: :quill_editor
     end
     f.actions
   end
