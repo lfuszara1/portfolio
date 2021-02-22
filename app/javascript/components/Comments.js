@@ -9,6 +9,8 @@ import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import Paper from "@material-ui/core/Paper";
 
+import { Star } from '@material-ui/icons';
+
 import NewComment from "./NewComment";
 
 const styles = {
@@ -27,13 +29,24 @@ const styles = {
         marginBottom: '20px',
     },
     aboutContent: {
-        alignItems: 'center',
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: 'row',
     },
     brOneHundred: {
         minWidth: '100vw',
         width: '100%'
+    },
+    hSixMargin: {
+        marginTop: 0,
+    },
+    aboutImage: {
+        borderRadius: "50px",
+    },
+    pMargin: {
+        margin: "0 10px"
+    },
+    stars: {
+        color: '#30B077'
     }
 }
 
@@ -101,6 +114,11 @@ class Comments extends React.Component {
                                                     <h6 className={classes.hSixMargin}>{element.name}</h6>
                                                     <p className={classes.pMargin}
                                                        dangerouslySetInnerHTML={{__html: xss(element.description)}}></p>
+                                                    <p className={classes.stars}>
+                                                        {[...Array(element.stars).keys()].map(() =>
+                                                            <Star />
+                                                        )}
+                                                    </p>
                                                 </div>
                                             </div>
                                         </Paper>
