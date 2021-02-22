@@ -13,7 +13,7 @@ const styles = {
     paperContainer: {
         color: "#333333",
         width: "35vw",
-        height: "20vh",
+        height: "300px",
         padding: "25px 50px 50px 50px",
     },
     hFourMargin: {

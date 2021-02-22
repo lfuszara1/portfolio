@@ -1,7 +1,10 @@
 class CommentController < ApplicationController
 
   def create
-    Comment.create(comment_params)
+    @comment = Comment.new(comment_params)
+    @comment.valid?
+    p @comment.errors.full_messages
+    @comment.save
   end
 
   private

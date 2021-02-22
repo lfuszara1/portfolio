@@ -9,6 +9,8 @@ import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import Paper from "@material-ui/core/Paper";
 
+import NewComment from "./NewComment";
+
 const styles = {
     mainMargin: {
         marginTop: '8px',
@@ -28,10 +30,52 @@ const styles = {
         alignItems: 'center',
         display: 'flex',
         flexDirection: 'column',
+    },
+    brOneHundred: {
+        minWidth: '100vw',
+        width: '100%'
     }
 }
 
 class Comments extends React.Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            modalState: false,
+            name: "",
+            description: "",
+            stars: 0,
+            avatar: "",
+        }
+
+        this.handleModalOpen = this.handleModalOpen.bind(this)
+        this.handleModalClose = this.handleModalClose.bind(this)
+
+        this.handleModalFormChange = this.handleModalFormChange.bind(this)
+    }
+
+    handleModalFormChange = (e) => {
+        this.setState({
+            ...this.state,
+            [e.target.id]: e.target.value
+        });
+    }
+
+    handleModalOpen = () => {
+        this.setState({
+            ...this.state,
+            modalState: true
+        })
+    }
+
+    handleModalClose = () => {
+        this.setState({
+            ...this.state,
+            modalState: false
+        })
+    }
+
     render () {
         const { classes } = this.props;
 
@@ -43,6 +87,9 @@ class Comments extends React.Component {
                     <Box minHeight='calc(105vh + 32px)' height='110%'>
                         <Grid container spacing={2} justify="center">
                             <Typography variant="h4" className={classes.hFourMargin}>Komentarze</Typography>
+                            <Divider/>
+                            <br className={classes.brOneHundred}/>
+                            <NewComment handleModalFormChange={this.handleModalFormChange} name={this.state.name} description={this.state.description} stars={this.state.stars} avatar={this.state.avatar} modalState={this.state.modalState} handleModalOpen={this.handleModalOpen} handleModalClose={this.handleModalClose}/>
                             <Divider/>
                             <Grid container justify="center">
                                 {this.props.comments.map((element, i) => {

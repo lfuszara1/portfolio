@@ -26,12 +26,4 @@ ActiveAdmin.register About do
     f.actions
   end
 
-  after_create do |about|
-    about.avatar.attach(params[:avatar])
-  end
-
-  after_update do |about|
-    about.avatar.attach(params[:avatar])
-  end
-
 end

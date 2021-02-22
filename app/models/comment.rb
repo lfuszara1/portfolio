@@ -10,9 +10,6 @@ class Comment < ApplicationRecord
   validates_presence_of :stars
   validates_numericality_of :stars
   validates_inclusion_of :stars, in: (1..6)
-  validates_presence_of :priority
-  validates_numericality_of :priority
-  validates_inclusion_of :accepted?, in: [true, false]
 
   scope :accepted, -> { where(accepted?: true) }
   scope :ordered_by_priority, -> { order(priority: :asc) }
