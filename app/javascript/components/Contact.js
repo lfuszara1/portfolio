@@ -9,6 +9,8 @@ import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import Paper from "@material-ui/core/Paper";
 
+import { GoogleReCaptcha } from 'react-google-recaptcha-v3';
+
 const styles = {
     mainMargin: {
         marginTop: '8px',
@@ -32,6 +34,16 @@ const styles = {
 }
 
 class Contact extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.handleVerifyContact = this.handleVerifyContact.bind(this)
+    }
+
+    handleVerifyContact = (event) => {
+        console.log(event)
+    }
+
     render () {
         const { classes } = this.props;
 
@@ -47,7 +59,9 @@ class Contact extends React.Component {
                             <Grid container justify="center">
                                 <Paper className={classes.paperContainer}>
                                     <div className={classes.aboutContent}>
+                                        <GoogleReCaptcha onVerify={(event) => this.handleVerifyContact(event)}>
 
+                                        </GoogleReCaptcha>
                                     </div>
                                 </Paper>
                             </Grid>

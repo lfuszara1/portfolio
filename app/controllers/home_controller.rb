@@ -2,8 +2,7 @@ class HomeController < ApplicationController
 
   before_action :load_about, :load_technologies, :load_projects, :load_comments
 
-  def index
-  end
+  def index; end
 
   private
 
@@ -18,7 +17,6 @@ class HomeController < ApplicationController
       helpers.parse_images technology, :logo
     end
   end
-
 
   def load_projects
     projects = Project.with_attached_logo.all

@@ -2,11 +2,11 @@
 
 module HomeHelper
 
-  def parse_images(img, name)
-    hash = img.as_json
+  def parse_images(element, name)
+    hash = element.as_json
 
-    img_logo = img.send(name)
-    hash[name] = url_for img_logo
+    img = element.send(name)
+    hash[name] = url_for img
 
     hash
   end
