@@ -40,7 +40,7 @@ class Technologies extends React.Component {
         return (
             <React.Fragment>
                 <div ref={this.props.technologiesRef} id="section-technologies" className={classes.mainMargin}>
-                    <Box height='calc(110%)'>
+                    <Box minHeight='calc(105vh + 32px)' height='110%'>
                         <Grid container spacing={2} justify="center">
                             <Typography variant="h4" className={classes.hFourMargin}>Technologie</Typography>
                             <Divider/>

@@ -48,7 +48,7 @@ class About extends React.Component {
         return (
             <React.Fragment>
                 <div ref={this.props.aboutRef} id="section-about">
-                    <Box height='calc(105vh + 32px)'>
+                    <Box minHeight='calc(105vh + 32px)' height='110%'>
                         <Grid container spacing={2} justify="center">
                             <Typography variant="h4" className={classes.hFourMargin}>O mnie</Typography>
                             <Divider/>

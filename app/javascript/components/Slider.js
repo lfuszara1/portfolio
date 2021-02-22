@@ -27,7 +27,7 @@ class Slider extends React.Component {
         return (
             <React.Fragment>
                 <div ref={this.props.sliderRef} id="section-slider">
-                    <Box height='105vh'>
+                    <Box minHeight='calc(105vh + 32px)' height='110%'>
                         <Box className={classes.slideOneContainer}>
 
                         </Box>

@@ -45,6 +45,9 @@ class Sidebar extends React.Component {
                         <ListItem component={Link} onClick={() => {this.executeScroll(this.props.commentsRef)}} selected={this.props.sectionId === 5}>
                             <ListItemText primary="Komentarze"/>
                         </ListItem>
+                        <ListItem component={Link} onClick={() => {this.executeScroll(this.props.contactRef)}} selected={this.props.sectionId === 6}>
+                            <ListItemText primary="Kontakt"/>
+                        </ListItem>
                     </List>
                 </Drawer>
             </React.Fragment>

@@ -40,7 +40,7 @@ class Comments extends React.Component {
         return (
             <React.Fragment>
                 <div ref={this.props.commentsRef} id="section-comments" className={classes.mainMargin}>
-                    <Box height='calc(110%)'>
+                    <Box minHeight='calc(105vh + 32px)' height='110%'>
                         <Grid container spacing={2} justify="center">
                             <Typography variant="h4" className={classes.hFourMargin}>Komentarze</Typography>
                             <Divider/>
@@ -48,7 +48,7 @@ class Comments extends React.Component {
                                 {this.props.comments.map((element, i) => {
                                         return <Paper key={i} className={classes.paperContainer}>
                                             <div className={classes.aboutContent}>
-                                                <img className={classes.aboutImage} src={element.logo} width="100px"
+                                                <img className={classes.aboutImage} src={element.avatar} width="100px"
                                                      height="100%"/>
                                                 <div className={classes.aboutText}>
                                                     <h6 className={classes.hSixMargin}>{element.name}</h6>
