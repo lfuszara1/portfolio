@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
+  get 'contact_form/send'
   root to: 'home#index'
 
   post 'comments', to: 'comment#create'
+  post 'contact_form', to: 'contact_form#send'
 
   get 'home/index'
   devise_for :admin_users, ActiveAdmin::Devise.config
