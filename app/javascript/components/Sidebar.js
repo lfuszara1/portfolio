@@ -10,6 +10,8 @@ import Link from '@material-ui/core/Link';
 const styles = {
     drawerPaper: {
         marginTop: "64px",
+        fontFamily: "'Lato', sans-serif",
+        fontWeight: 400,
     },
     listWidth: {
         minWidth: "256px",

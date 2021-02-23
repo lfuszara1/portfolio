@@ -18,12 +18,16 @@ const styles = {
     paperContainer: {
         color: "#333333",
         width: "40vw",
-        height: "300px",
+        height: "400px",
         padding: "25px 50px 50px 50px",
         margin: "12px 0",
+        fontFamily: "'Lato', sans-serif",
+        fontWeight: 400,
     },
     hFourMargin: {
         marginBottom: '20px',
+        fontFamily: "'Lato', sans-serif",
+        fontWeight: 400,
     },
     aboutContent: {
         alignItems: 'center',
@@ -32,7 +36,10 @@ const styles = {
     },
     stars: {
         color: '#30B077'
-    }
+    },
+    hSixMargin: {
+        fontSize: "1.25em"
+    },
 }
 
 class Technologies extends React.Component {

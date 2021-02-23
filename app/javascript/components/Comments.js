@@ -21,12 +21,16 @@ const styles = {
     paperContainer: {
         color: "#333333",
         width: "40vw",
-        height: "40vh",
+        height: "400px",
         padding: "25px 50px 50px 50px",
         margin: "12px 0",
+        fontFamily: "'Lato', sans-serif",
+        fontWeight: 400,
     },
     hFourMargin: {
         marginBottom: '20px',
+        flexDirection: "column",
+        fontFamily: "'Lato', sans-serif",
     },
     aboutContent: {
         display: 'flex',
@@ -37,7 +41,8 @@ const styles = {
         width: '100%'
     },
     hSixMargin: {
-        marginTop: 0,
+        margin: "0 10px",
+        fontSize: "1.25em"
     },
     aboutImage: {
         borderRadius: "50px",
@@ -58,7 +63,7 @@ class Comments extends React.Component {
             modalState: false,
             name: "",
             description: "",
-            stars: 0,
+            stars: 5,
             avatar: "",
         }
 

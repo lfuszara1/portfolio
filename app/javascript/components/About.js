@@ -18,10 +18,14 @@ const styles = {
     },
     hFourMargin: {
         marginBottom: '20px',
+        flexDirection: "column",
+        fontFamily: "'Lato', sans-serif",
     },
     aboutContent: {
         display: "flex",
-        flexDirection: "row"
+        flexDirection: "row",
+        fontFamily: "'Lato', sans-serif",
+        fontWeight: 400,
     },
     aboutImage: {
         borderRadius: "50px",
@@ -31,7 +35,8 @@ const styles = {
         flexDirection: "column",
     },
     hSixMargin: {
-        margin: "5px 5px"
+        margin: "10px",
+        fontSize: "1.25em"
     },
     pMargin: {
         margin: "0 10px"

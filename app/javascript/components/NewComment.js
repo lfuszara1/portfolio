@@ -6,16 +6,26 @@ import Dialog from "@material-ui/core/Dialog";
 import Paper from "@material-ui/core/Paper";
 
 import {withStyles} from "@material-ui/core/styles";
+import TextField from '@material-ui/core/TextField';
 
 const styles = {
     paperContainer: {
         color: "#333333",
-        width: "40vw",
-        height: "40vh",
+        width: "35vw",
+        height: "45vh",
         padding: "50px",
     },
+    formDiv: {
+        justifyContent: "center",
+        flexDirection: "column",
+        display: "flex",
+        maxWidth: "100%",
+    },
     formField: {
-        minWidth: "100%",
+        margin: "5px 0",
+    },
+    formInputText: {
+        color: "#333333",
     }
 }
 
@@ -29,7 +39,8 @@ class NewComment extends Component {
 
         this.form = React.createRef()
 
-        this.handleVerifyNewComment = this.handleVerifyNewComment.bind(this)
+        this.handleVerifyNewComment = this.handleVerifyNewComment.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleVerifyNewComment = (event) => {
@@ -39,8 +50,6 @@ class NewComment extends Component {
                 reCaptchaVerified: true,
             })
         }
-
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleSubmit = (e) => {
@@ -57,7 +66,7 @@ class NewComment extends Component {
             },
             body: data
         }).then(response => response.json().then(
-            d => console.log(d))
+            () => this.props.handleModalClose())
         );
     }
 
@@ -67,28 +76,42 @@ class NewComment extends Component {
         return (
             <React.Fragment>
                 <GoogleReCaptcha onVerify={(event) => this.handleVerifyNewComment(event)} />
-                <Button variant="outlined" onClick={() => this.props.handleModalOpen()}>
-                    Dodaj komentarz
-                </Button>
-                <Dialog open={ this.props.modalState } onClose={() => this.props.handleModalClose()} className={classes.dialogContainer}>
-                    <Paper className={classes.paperContainer}>
-                        <form ref={this.form} onSubmit={(event) => this.handleSubmit(event)}>
-                            <label htmlFor="name">Imię i nazwisko</label>
-                            <input id="name" name='comment[name]' onChange={(event) => this.props.handleModalFormChange(event)} className={classes.formField} value={this.props.name}/>
-                            <br/>
-                            <label htmlFor="description">Opis</label>
-                            <textarea id="description" name='comment[description]' onChange={(event) => this.props.handleModalFormChange(event)} className={classes.formField} value={this.props.description}/>
-                            <br/>
-                            <label htmlFor="stars">Ocena</label>
-                            <input type="number" id="stars" name='comment[stars]' onChange={(event) => this.props.handleModalFormChange(event)} className={classes.formField} value={this.props.stars}/>
-                            <br/>
-                            <label htmlFor="avatar" className={classes.formField}>Awatar</label>
-                            <input type="file" id="avatar" name='comment[avatar]' onChange={(event) => this.props.handleModalFormChange(event)} className={classes.formField} value={this.props.avatar}/>
-                            <br/>
-                            <Button type="submit">Zapisz</Button>
-                        </form>
-                    </Paper>
-                </Dialog>
+                {
+                    this.state.reCaptchaVerified ?
+                        <div className={classes.formDiv}>
+                            <Button variant="outlined" color="secondary" onClick={() => this.props.handleModalOpen()}>
+                                Dodaj komentarz
+                            </Button>
+                            <Dialog open={this.props.modalState} onClose={() => this.props.handleModalClose()}>
+                                <Paper className={classes.paperContainer}>
+                                    <form ref={this.form} className={classes.formDiv} onSubmit={(event) => this.handleSubmit(event)}>
+                                        <TextField id="name" name='comment[name]' className={classes.formField}
+                                                   inputProps={{className: classes.formInputText}} label="Imię i nazwisko"
+                                                   required onChange={(event) => this.props.handleModalFormChange(event)}
+                                                   value={this.props.name}/>
+                                        <TextField id="description" name='comment[description]'
+                                                   className={classes.formField}
+                                                   inputProps={{className: classes.formInputText}} multiline rows={4} label="Opis, minimum 100 znaków" required
+                                                   onChange={(event) => this.props.handleModalFormChange(event)}
+                                                   value={this.props.description}/>
+                                        <TextField type="number" id="stars" name='comment[stars]'
+                                                   className={classes.formField}
+                                                   inputProps={{className: classes.formInputText}} label="Ocena 1-6" required
+                                                   onChange={(event) => this.props.handleModalFormChange(event)}
+                                                   value={this.props.stars}/>
+                                        <TextField type="file" id="avatar" name='comment[avatar]'
+                                                   className={classes.formField}
+                                                   inputProps={{className: classes.formInputText}} label="Awatar" required
+                                                   onChange={(event) => this.props.handleModalFormChange(event)}
+                                                   value={this.props.avatar}/>
+                                        <Button variant="outlined" color="secondary" type="submit"
+                                                className={classes.formField}>Zapisz</Button>
+                                    </form>
+                                </Paper>
+                            </Dialog>
+                        </div>
+                        : <div>Brak weryfikacji reCaptcha</div>
+                }
             </React.Fragment>
         );
     }

@@ -18,5 +18,9 @@ module Portfolio
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    Bundler.require(:default, :assets, Rails.env)
+    config.assets.initialize_on_precompile = false
+    config.assets.precompile += %w( active_admin.js active_admin.css.scss )
   end
 end
