@@ -25,7 +25,9 @@ import Footer from "./Footer";
 
 const styles = {
     contentWrapper: {
-        marginLeft: '256px',
+        [theme.breakpoints.up('md')]: {
+            marginLeft: '256px'
+        }
     }
 }
 
@@ -80,7 +82,7 @@ class Home extends React.Component {
                                     <Projects projectsRef={this.projectsRef} projects={this.props.projects}/>
                                 </InView>
                                 <InView as="div" rootMargin="-4px" onChange={(inView, entry) => inView ? this.handleIntersection(5) : null}>
-                                    <Comments commentsRef={this.commentsRef} comments={this.props.comments}/>
+                                    <Comments commentsRef={this.commentsRef} comments={this.props.comments} comment_errors={this.props.comment_errors}/>
                                 </InView>
                                 <InView as="div" rootMargin="-4px" onChange={(inView, entry) => inView ? this.handleIntersection(6) : null}>
                                     <Contact contactRef={this.contactRef}/>
@@ -99,7 +101,8 @@ Home.propTypes = {
     about: PropTypes.object,
     technologies: PropTypes.array,
     projects: PropTypes.array,
-    comments: PropTypes.array
+    comments: PropTypes.array,
+    comment_errors: PropTypes.array,
 };
 
 export default withStyles(styles)(Home);

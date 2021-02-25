@@ -4,22 +4,23 @@ import { GoogleReCaptcha } from 'react-google-recaptcha-v3';
 import Button from "@material-ui/core/Button"
 import Dialog from "@material-ui/core/Dialog";
 import Paper from "@material-ui/core/Paper";
-
+import List from "@material-ui/core/List";
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 import {withStyles} from "@material-ui/core/styles";
 import TextField from '@material-ui/core/TextField';
 
 const styles = {
     paperContainer: {
         color: "#333333",
-        width: "35vw",
-        height: "45vh",
+        width: "400px",
+        height: "450px",
         padding: "50px",
     },
     formDiv: {
         justifyContent: "center",
         flexDirection: "column",
         display: "flex",
-        maxWidth: "100%",
     },
     formField: {
         margin: "5px 0",
@@ -34,7 +35,8 @@ class NewComment extends Component {
         super(props);
 
         this.state = {
-            reCaptchaVerified: false
+            reCaptchaVerified: false,
+            comment_errors: []
         }
 
         this.form = React.createRef()
@@ -66,7 +68,21 @@ class NewComment extends Component {
             },
             body: data
         }).then(response => response.json().then(
-            () => this.props.handleModalClose())
+            (data) => {
+                if (response.status === 400) {
+                    data.errors.map((element) => {
+                        this.setState({
+                            ...this.state,
+                            comment_errors: [
+                                ...this.state.comment_errors,
+                                element
+                            ]
+                        })
+                    })
+                } else {
+                    this.props.handleModalClose();
+                }
+            })
         );
     }
 
@@ -104,6 +120,13 @@ class NewComment extends Component {
                                                    inputProps={{className: classes.formInputText}} label="Awatar" required
                                                    onChange={(event) => this.props.handleModalFormChange(event)}
                                                    value={this.props.avatar}/>
+                                        <List>
+                                            {this.state.comment_errors.map((error, i) =>
+                                                <ListItem key={i}>
+                                                    <ListItemText primary={error} />
+                                                </ListItem>
+                                            )}
+                                        </List>
                                         <Button variant="outlined" color="secondary" type="submit"
                                                 className={classes.formField}>Zapisz</Button>
                                     </form>

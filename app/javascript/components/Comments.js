@@ -107,7 +107,7 @@ class Comments extends React.Component {
                             <Typography variant="h4" className={classes.hFourMargin}>Komentarze</Typography>
                             <Divider/>
                             <br className={classes.brOneHundred}/>
-                            <NewComment handleModalFormChange={this.handleModalFormChange} name={this.state.name} description={this.state.description} stars={this.state.stars} avatar={this.state.avatar} modalState={this.state.modalState} handleModalOpen={this.handleModalOpen} handleModalClose={this.handleModalClose}/>
+                            <NewComment comment_errors={this.props.comment_errors} handleModalFormChange={this.handleModalFormChange} name={this.state.name} description={this.state.description} stars={this.state.stars} avatar={this.state.avatar} modalState={this.state.modalState} handleModalOpen={this.handleModalOpen} handleModalClose={this.handleModalClose}/>
                             <Divider/>
                             <Grid container justify="center">
                                 {this.props.comments.map((element, i) => {
@@ -139,6 +139,7 @@ class Comments extends React.Component {
 }
 
 Comments.propTypes = {
-    comments: PropTypes.array
+    comments: PropTypes.array,
+    comment_errors: PropTypes.array,
 };
 export default withStyles(styles)(Comments);

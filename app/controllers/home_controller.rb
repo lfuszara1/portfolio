@@ -26,7 +26,7 @@ class HomeController < ApplicationController
   end
 
   def load_comments
-    comments = Comment.with_attached_avatar.accepted.ordered_by_priority
+    comments = Comment.with_attached_avatar.accepted.ordered_by_priority.limit(20)
     @comments = comments.map do |comment|
       helpers.parse_images comment, :avatar
     end
